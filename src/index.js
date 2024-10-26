@@ -2,12 +2,19 @@
 
 import express from "express";
 import connectDB from "./db/index.js";
+const app = express();
 
 connectDB()
+  .then(() => {
+    app.listen(process.env.PORT || 8000, () => {
+      console.log(`MONGODB CONNECTED !! ${process.env.PORT}`);
+    });
+  })
+  .catch((error) => {
+    console.log("MONGO DB NOT CONNECTED ERROR");
+  });
 
 // ===========================================================================
-
-
 
 /*
 // METHOD 1 to connect with mongo db
